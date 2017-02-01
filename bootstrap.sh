@@ -24,6 +24,16 @@ export NVM_DIR="$HOME/.nvm"
 nvm install node
 nvm use node
 
+# Give Safe User Permission To Use Port 80
+sudo apt-get install libcap2-bin -y
+sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
+
+# Install KeeWeb
+wget -q https://github.com/keeweb/keeweb/releases/download/v1.3.3/KeeWeb-1.3.3.linux.x64.deb -O KeeWeb.deb
+sudo dpkg -i KeeWeb.deb
+sudo apt-get install -f
+rm KeeWeb.deb
+
 # Install VSCode
 wget -q https://go.microsoft.com/fwlink/?LinkID=760868 -O VSCode.deb
 sudo dpkg -i VSCode.deb
